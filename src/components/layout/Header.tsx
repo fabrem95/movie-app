@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
 	},
 }));
 
-export const Header = (props: Props) => {
+const Header = (props: Props) => {
 	const { classes } = useStyles();
 
 	return (
@@ -33,3 +33,5 @@ export const Header = (props: Props) => {
 		</MantineHeader>
 	);
 };
+
+export default Header;

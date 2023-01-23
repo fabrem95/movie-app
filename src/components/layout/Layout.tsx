@@ -1,12 +1,13 @@
-import { AppShell } from "@mantine/core";
+import { Suspense } from "react";
 import { Outlet } from "react-router";
+import { AppShell } from "@mantine/core";
 
-import { Header } from "./Header";
-import { Footer } from "./Footer";
+import Header from "./Header";
+import Footer from "./Footer";
 
 type Props = {};
 
-export const Layout = (props: Props) => {
+const Layout = (props: Props) => {
 	return (
 		<AppShell
 			padding="md"
@@ -21,7 +22,11 @@ export const Layout = (props: Props) => {
 				},
 			})}
 		>
-			<Outlet />
+			<Suspense fallback="Loading...">
+				<Outlet />
+			</Suspense>
 		</AppShell>
 	);
 };
+
+export default Layout;

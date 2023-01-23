@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Router, Route, Routes } from "react-router";
+import { lazy } from "react";
+import { Route, Routes } from "react-router";
 
-import { Layout } from "./components/layout/Layout";
+import Layout from "./components/layout/Layout";
+const Home = lazy(() => import("./pages/Home"));
 
 import "./App.css";
-import { Home } from "./pages/Home";
 
 function App() {
 	return (

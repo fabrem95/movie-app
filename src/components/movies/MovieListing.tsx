@@ -1,5 +1,7 @@
 type Props = {};
 
-export const MovieListing = (props: Props) => {
+const MovieListing = (props: Props) => {
 	return <div></div>;
 };
+
+export default MovieListing;

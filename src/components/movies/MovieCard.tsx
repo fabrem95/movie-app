@@ -1,4 +1,7 @@
 type Props = {};
-export const movieCard = (props: Props) => {
+
+const MovieCard = (props: Props) => {
 	return <div></div>;
 };
+
+export default MovieCard;
