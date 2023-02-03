@@ -5,7 +5,7 @@ import moviesReducer from "../features/movies/moviesSlice";
 
 import { baseApi } from "../api/baseApi";
 
-const store = configureStore({
+export const store = configureStore({
 	reducer: {
 		movies: moviesReducer,
 		[baseApi.reducerPath]: baseApi.reducer,

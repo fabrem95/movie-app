@@ -4,9 +4,17 @@ import { IMovie } from "../../types";
 
 const moviesApi = baseApi.injectEndpoints({
 	endpoints: (builder) => ({
-		getMovies: builder.query<IMovie[], string>({
-			query: (type = "movie", id = "tt3896198", search = "Harry") =>
+		getMovies: builder.query<
+			IMovie[],
+			{ type?: string; id?: string; search?: string }
+		>({
+			query: ({ type = "movie", id = "tt3896198", search = "Harry" }) =>
 				`?i=${id}&s=${search}&type=${type}`,
+			transformResponse: (resp: {
+				Response: string;
+				Search: IMovie[];
+				totalResults: string;
+			}) => resp.Search,
 		}),
 		getShows: builder.query<
 			IMovie[],

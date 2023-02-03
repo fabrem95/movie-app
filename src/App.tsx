@@ -7,10 +7,9 @@ import {
 } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
 
+//Componentes
 import Layout from "./components/layout/Layout";
 const Home = lazy(() => import("./pages/Home"));
-
-import "./App.css";
 
 function App() {
 	const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -30,11 +29,11 @@ function App() {
 				theme={{
 					colorScheme,
 					breakpoints: {
-						xs: 420,
-						sm: 800,
-						md: 1000,
-						lg: 1200,
-						xl: 1400,
+						xs: 320,
+						sm: 425,
+						md: 768,
+						lg: 1024,
+						xl: 1440,
 					},
 				}}
 				withNormalizeCSS

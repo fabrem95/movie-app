@@ -5,7 +5,8 @@ type Props = {};
 const Footer = (props: Props) => {
 	return (
 		<MantineFooter height={60} p="md">
-			Application footer
+			<div>Movie App</div>
+			<div>Ⓒ2023, Movie, Inc. or its affiliates </div>
 		</MantineFooter>
 	);
 };

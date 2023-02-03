@@ -1,13 +1,11 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router";
-import { AppShell } from "@mantine/core";
+import { AppShell, Loader, ScrollArea } from "@mantine/core";
 
 import Header from "./Header";
 import Footer from "./Footer";
 
-type Props = {};
-
-const Layout = (props: Props) => {
+const Layout = () => {
 	return (
 		<AppShell
 			padding="md"
@@ -22,9 +20,11 @@ const Layout = (props: Props) => {
 				},
 			})}
 		>
-			<Suspense fallback="Loading...">
+			{/* <ScrollArea> */}
+			<Suspense fallback={<Loader />}>
 				<Outlet />
 			</Suspense>
+			{/* </ScrollArea> */}
 		</AppShell>
 	);
 };
