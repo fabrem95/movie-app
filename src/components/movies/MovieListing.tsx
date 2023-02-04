@@ -9,6 +9,7 @@ import {
 	Title,
 } from "@mantine/core";
 import { IMovie } from "../../types";
+import MovieCard from "./MovieCard";
 
 type Props = {
 	movies: IMovie[];
@@ -19,7 +20,6 @@ const useStyles = createStyles((theme) => ({
 		display: "flex",
 		flexDirection: "column",
 	},
-	carousel: {},
 	movieSlide: {
 		display: "flex",
 		alignItems: "center",
@@ -53,7 +53,7 @@ const MovieListing = ({ movies }: Props) => {
 			sx={{ width: "90%" }}
 			mx="auto"
 			height={400}
-			// slideSize="20%"
+			styles={{ container: { padding: "0 1rem" } }}
 			slideGap="lg"
 			slidesToScroll={1}
 			align="start"
@@ -71,15 +71,7 @@ const MovieListing = ({ movies }: Props) => {
 				movies.map((movie) => {
 					return (
 						<Carousel.Slide key={movie.imdbID} className={classes.movieSlide}>
-							<Card className={classes.movieCard} shadow="lg">
-								<Card.Section className={classes.cardSection}>
-									<img className={classes.cardImg} src={movie.Poster} />
-								</Card.Section>
-								<footer className={classes.cardFooter}>
-									<Text color="dark.5">{movie.Title}</Text>
-									<Text color="dark.5">{movie.Year}</Text>
-								</footer>
-							</Card>
+							<MovieCard movie={movie} />
 						</Carousel.Slide>
 					);
 				})}
