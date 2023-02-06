@@ -1,18 +1,12 @@
 import { Carousel } from "@mantine/carousel";
-import {
-	Box,
-	Card,
-	createStyles,
-	Footer,
-	Image,
-	Text,
-	Title,
-} from "@mantine/core";
-import { IMovie } from "../../types";
+import { createStyles } from "@mantine/core";
+
+import { EntityId } from "@reduxjs/toolkit";
+
 import MovieCard from "./MovieCard";
 
 type Props = {
-	movies: IMovie[];
+	moviesIds: EntityId[];
 };
 
 const useStyles = createStyles((theme) => ({
@@ -45,7 +39,7 @@ const useStyles = createStyles((theme) => ({
 	},
 }));
 
-const MovieListing = ({ movies }: Props) => {
+const MovieListing = ({ moviesIds }: Props) => {
 	const { classes } = useStyles();
 
 	return (
@@ -67,11 +61,11 @@ const MovieListing = ({ movies }: Props) => {
 				{ minWidth: "lg", slideSize: "20%" },
 			]}
 		>
-			{movies.length > 0 &&
-				movies.map((movie) => {
+			{moviesIds.length > 0 &&
+				moviesIds.map((movieId) => {
 					return (
-						<Carousel.Slide key={movie.imdbID} className={classes.movieSlide}>
-							<MovieCard movie={movie} />
+						<Carousel.Slide key={movieId} className={classes.movieSlide}>
+							<MovieCard movieId={movieId} />
 						</Carousel.Slide>
 					);
 				})}

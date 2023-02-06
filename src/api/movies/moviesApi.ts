@@ -1,6 +1,7 @@
 import { baseApi } from "../baseApi";
 
 import { IMovie } from "../../types";
+import { addMovie } from "../../features/movies/moviesSlice";
 
 const moviesApi = baseApi.injectEndpoints({
 	endpoints: (builder) => ({
@@ -15,6 +16,12 @@ const moviesApi = baseApi.injectEndpoints({
 				Search: IMovie[];
 				totalResults: string;
 			}) => resp.Search,
+			async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+				const movies = await queryFulfilled;
+				if (movies) {
+					dispatch(addMovie(movies.data));
+				}
+			},
 		}),
 		getShows: builder.query<
 			IMovie[],

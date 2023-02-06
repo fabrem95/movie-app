@@ -1,9 +1,12 @@
-import { Card, createStyles, Text } from "@mantine/core";
+import { Card, createStyles, Loader, Text } from "@mantine/core";
 
 import { IMovie } from "../../types";
+import { useAppselector } from "../../app/hooks";
+import { selectMovieById } from "../../features/movies/moviesSlice";
+import { EntityId } from "@reduxjs/toolkit";
 
 type Props = {
-	movie: IMovie;
+	movieId: EntityId;
 };
 
 const useStyles = createStyles((theme) => ({
@@ -24,17 +27,21 @@ const useStyles = createStyles((theme) => ({
 	},
 }));
 
-const MovieCard = ({ movie }: Props) => {
+const MovieCard = ({ movieId }: Props) => {
 	const { classes } = useStyles();
 
-	return (
+	const Movie = useAppselector((state) => selectMovieById(state, movieId));
+
+	return !Movie ? (
+		<Loader />
+	) : (
 		<Card className={classes.movieCard} shadow="lg">
 			<Card.Section className={classes.cardSection}>
-				<img className={classes.cardImg} src={movie.Poster} />
+				<img className={classes.cardImg} src={Movie.Poster} />
 			</Card.Section>
 			<footer className={classes.cardFooter}>
-				<Text color="dark.5">{movie.Title}</Text>
-				<Text color="dark.5">{movie.Year}</Text>
+				<Text color="dark.5">{Movie.Title}</Text>
+				<Text color="dark.5">{Movie.Year}</Text>
 			</footer>
 		</Card>
 	);
