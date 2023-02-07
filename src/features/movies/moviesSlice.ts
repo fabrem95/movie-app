@@ -31,5 +31,6 @@ export const {
 	selectAll: selectAllMovies,
 	selectById: selectMovieById,
 	selectIds: selectMoviesIds,
+	selectTotal: selectMoviesTotal,
 	// Pass in a selector that returns the posts slice of state
 } = moviesAdapter.getSelectors<RootState>((state) => state.movies);

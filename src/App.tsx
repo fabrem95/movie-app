@@ -6,6 +6,7 @@ import {
 	MantineProvider,
 } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
+import { RoutesApp } from "./routes/index";
 
 //Componentes
 import Layout from "./components/layout/Layout";
@@ -40,8 +41,8 @@ function App() {
 				withGlobalStyles
 			>
 				<Routes>
-					<Route path="/" element={<Layout />}>
-						<Route path="/" element={<Home />} />
+					<Route path={RoutesApp.Home} element={<Layout />}>
+						<Route path={RoutesApp.Home} element={<Home />} />
 					</Route>
 				</Routes>
 			</MantineProvider>
