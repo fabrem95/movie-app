@@ -4,16 +4,20 @@ import { IMovie } from "../../types";
 import { useAppselector } from "../../app/hooks";
 import { selectMovieById } from "../../features/movies/moviesSlice";
 import { EntityId } from "@reduxjs/toolkit";
+import { Link } from "react-router-dom";
+import { RoutesApp } from "../../routes";
 
 type Props = {
 	movieId: EntityId;
 };
 
 const useStyles = createStyles((theme) => ({
+	movieLink: {
+		textDecoration: "none",
+	},
 	movieCard: {
 		height: "90%",
 		backgroundColor: theme.colors.dark[0],
-		cursor: "pointer",
 	},
 	cardSection: {
 		height: "85%",
@@ -35,15 +39,20 @@ const MovieCard = ({ movieId }: Props) => {
 	return !Movie ? (
 		<Loader />
 	) : (
-		<Card className={classes.movieCard} shadow="lg">
-			<Card.Section className={classes.cardSection}>
-				<img className={classes.cardImg} src={Movie.Poster} />
-			</Card.Section>
-			<footer className={classes.cardFooter}>
-				<Text color="dark.5">{Movie.Title}</Text>
-				<Text color="dark.5">{Movie.Year}</Text>
-			</footer>
-		</Card>
+		<Link
+			to={RoutesApp.Movies.movieDetails + movieId}
+			className={classes.movieLink}
+		>
+			<Card className={classes.movieCard} shadow="lg">
+				<Card.Section className={classes.cardSection}>
+					<img className={classes.cardImg} src={Movie.Poster} />
+				</Card.Section>
+				<footer className={classes.cardFooter}>
+					<Text color="dark.5">{Movie.Title}</Text>
+					<Text color="dark.5">{Movie.Year}</Text>
+				</footer>
+			</Card>
+		</Link>
 	);
 };
 

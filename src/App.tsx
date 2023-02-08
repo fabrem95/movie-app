@@ -10,6 +10,7 @@ import { RoutesApp } from "./routes/index";
 
 //Componentes
 import Layout from "./components/layout/Layout";
+import MovieDetails from "./pages/MovieDetails";
 const Home = lazy(() => import("./pages/Home"));
 
 function App() {
@@ -43,6 +44,10 @@ function App() {
 				<Routes>
 					<Route path={RoutesApp.Home} element={<Layout />}>
 						<Route path={RoutesApp.Home} element={<Home />} />
+						<Route
+							path={RoutesApp.Movies.movieDetails + ":id"}
+							element={<MovieDetails />}
+						/>
 					</Route>
 				</Routes>
 			</MantineProvider>
